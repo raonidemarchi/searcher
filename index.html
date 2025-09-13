@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searcher</title>
+  </head>
+  <body>
+    <script>
+      const randomNumber = (min, max) => {
+        const ceiledMin = Math.ceil(min)
+        const flooredMax = Math.floor(max)
+        
+        return Math.floor(Math.random() * (flooredMax - ceiledMin + 1)) + ceiledMin
+      }
+
+      const randomTerm = () => {
+        const termsArray = [
+          'latest tech news',
+          'healthy recipes',
+          'travel destinations 2024',
+          'home workout routines',
+          'best new movies',
+          'budgeting tips',
+          'learn to code online',
+          'gardening for beginners',
+          'stock market trends',
+          'mindfulness meditation',
+          'DIY crafts',
+          'AI tools for productivity',
+          'climate change facts',
+          'quick dinner ideas',
+          'photography tips for beginners',
+          'how to start a podcast',
+          'future of renewable energy',
+          'top video games 2025',
+          'simple pasta recipes',
+          'history of the internet',
+          'astronomy for kids',
+          'beginner piano lessons',
+          'best hiking trails near me',
+          'sushi restaurant recommendations',
+          'how to fix a leaky faucet',
+          'electric car reviews 2024',
+          'affordable home decor ideas',
+          'managing personal finances',
+          'meditation techniques for stress',
+          'online marketing strategies',
+          'world history documentaries',
+          'sustainable living tips',
+          'healthy smoothie recipes',
+          'learn a new language',
+          'fiction books to read',
+          'cybersecurity for beginners',
+          'pet adoption guides',
+          'volunteer opportunities near me',
+          'digital art tutorials',
+          'healthy lunch prep ideas',
+          'financial independence guide',
+          'classic rock albums',
+          'urban gardening ideas',
+          'how to bake sourdough bread',
+          'remote job search',
+          'mental health resources',
+          'beginner yoga poses',
+          'podcasting equipment',
+          'documentary recommendations',
+          'space exploration news',
+          'machine learning basics',
+          'eco-friendly products',
+          'how to build a website',
+          'graphic design software',
+          'productivity apps',
+          'travel packing tips',
+          'healthy breakfast ideas',
+          'art museums in Europe',
+          'personal branding guide',
+          'cryptocurrency explained',
+          'bird watching for beginners',
+          'best sci-fi books',
+          'cooking for one recipes',
+          'how to negotiate salary',
+          'public speaking tips',
+          'history of ancient Rome',
+          'start a small business',
+          'mind-body connection',
+          'astrology for beginners',
+          'classic literature recommendations',
+          'how to write a resume',
+          'data science career path',
+          'budget travel destinations',
+          'at-home coffee brewing',
+          'mindful eating guide',
+          'personal finance for students',
+          'video editing software',
+          'how to build a PC',
+          'learn to draw',
+          'volunteer abroad programs',
+          'easy cocktail recipes',
+          'home organization hacks',
+          'new smart home devices',
+          'future of virtual reality',
+          'latest breakthroughs in medicine',
+          'how to compost at home',
+          'sustainable fashion brands',
+          'how to learn a musical instrument',
+          'urban sketching tutorials',
+          'best places to travel solo',
+          'tips for long-distance running',
+          'creating a personal budget',
+          'advanced photography techniques',
+          'world\'s most beautiful waterfalls',
+          'AI ethics and regulations',
+          'gourmet cooking techniques',
+          'history of jazz music',
+          'home renovation ideas on a budget',
+          'how to build a raised garden bed',
+          'introduction to cryptocurrency trading',
+          'meditation for deep sleep',
+          'history of video games',
+          'beginner\'s guide to investing',
+          'how to make homemade pasta',
+          'best horror movies of all time',
+          'beginner\'s guide to calligraphy',
+          'how to train a puppy',
+          'climate change solutions',
+          'best road trips in the US',
+          'quick and easy dessert recipes',
+          'learning a foreign language online',
+          'guide to minimalist living',
+          'how to start a blog',
+          'best documentaries on Netflix',
+          'how to learn chess',
+          'advanced Excel tutorials',
+          'guide to healthy aging',
+          'best podcasts for a long commute',
+          'how to build a capsule wardrobe',
+          'learn Python for data science',
+          'history of rock and roll',
+          'how to brew your own beer',
+          'DIY home improvement projects',
+          'beginners guide to astronomy',
+          'how to save for retirement',
+          'simple gluten-free recipes',
+          'understanding quantum computing',
+          'how to write a short story',
+          'best fantasy novels',
+          'mindful breathing exercises',
+          'how to start a YouTube channel',
+          'easy meal prep ideas',
+          'beginners guide to woodworking',
+          'how to develop emotional intelligence',
+          'best historical fiction books',
+          'how to create a financial plan',
+          'learn basic Spanish phrases',
+          'easy homemade pizza recipes',
+          'how to organize your digital life',
+          'guide to intermittent fasting',
+          'best animated movies for adults',
+          'how to find remote jobs in tech',
+          'quick and healthy weeknight dinners',
+          'best travel apps for planning',
+          'how to improve your public speaking skills',
+          'beginners guide to coding with JavaScript',
+          'easy watercolor painting tutorials'
+        ]
+
+        return termsArray[randomNumber(0, termsArray.length - 1)].replace(/ /g, '+')
+      }
+
+      const randomString = (length, includeNumbers = true) => {
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        const numbers = '0123456789'
+        const availableCharacters = includeNumbers ? letters + numbers : letters
+
+        return Array.from({ length }, () =>
+          availableCharacters.charAt(
+            randomNumber(0, availableCharacters.length - 1)
+          )
+        ).join('')
+      }
+
+      const search = (timeout = 0) => {
+        const searchTerm = randomTerm()
+        const searchUrl = 'https://www.bing.com/search?q=' + searchTerm +
+          '&form=' + randomString(4, false) +
+          '&sp=-1&ghc=1&lq=0&pq=' + searchTerm +
+          '&sc=' + randomNumber(10, 19) + '-' + randomNumber(1, 9) +
+          '&qs=n&sk=&cvid=' + randomString(32)
+
+        setTimeout(() => {
+          const newTab = window.open(searchUrl)
+
+          search(randomNumber(120000, 150000))
+          setTimeout(() => newTab.close(), 2000)
+        }, timeout)
+      }
+
+      search()
+    </script>
+  </body>
+</html>
